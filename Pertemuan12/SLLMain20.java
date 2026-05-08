@@ -25,6 +25,20 @@ public class SLLMain20 {
         sll.insertAt(2, mhs2);
         sll.print();
 
+        System.out.print("data index 1 : \n");
+        sll.getData(1);
+        System.out.println();
+
+        System.out.println("data mahasiswa an Bimon berada pada index : " + sll.indexOf("bimon"));
+        System.out.println();
+
+        sll.removeFirst();
+        sll.removeLast();
+        sll.print();
+
+        sll.removeAt(0);
+        sll.print();
+
         System.out.println("==================================");
         System.out.println("  Tambah Data Mahasiswa Baru");
         System.out.println("==================================");
@@ -46,16 +60,19 @@ public class SLLMain20 {
             }
 
             System.out.println("\n-- Input Data Mahasiswa --");
-            System.out.print("NIM   : "); 
-            String nim   = sc.nextLine();
-            System.out.print("Nama  : "); 
-            String nama  = sc.nextLine();
-            System.out.print("Kelas : "); 
+            System.out.print("NIM   : ");
+            String nim = sc.nextLine();
+            System.out.print("Nama  : ");
+            String nama = sc.nextLine();
+            System.out.print("Kelas : ");
             String kelas = sc.nextLine();
             System.out.print("IPK   : ");
             double ipk;
-            try { ipk = Double.parseDouble(sc.nextLine()); }
-            catch (NumberFormatException e) { ipk = 0.0; }
+            try {
+                ipk = Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                ipk = 0.0;
+            }
 
             Mahasiswa20 baru = new Mahasiswa20(nama, nim, kelas, ipk);
 
@@ -77,8 +94,11 @@ public class SLLMain20 {
                 case "4":
                     System.out.print("Masukkan indeks: ");
                     int idx;
-                    try { idx = Integer.parseInt(sc.nextLine()); }
-                    catch (NumberFormatException e) { idx = 0; }
+                    try {
+                        idx = Integer.parseInt(sc.nextLine());
+                    } catch (NumberFormatException e) {
+                        idx = 0;
+                    }
                     sll.insertAt(idx, baru);
                     System.out.println("Data disisipkan pada indeks " + idx + ".");
                     break;
