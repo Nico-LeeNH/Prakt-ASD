@@ -9,6 +9,8 @@ public class DaftarPesanan {
         tail = null;
     }
 
+    // Kompleksitas: O(1) — menyisipkan di tail yang sudah diketahui langsung,
+    // tidak ada loop atau traversal, hanya update pointer.
     void tambahPesanan(int kode, String nama, int harga, String namaPembeli) {
         Pesanan baru = new Pesanan(kode, nama, harga, namaPembeli);
 
@@ -22,6 +24,9 @@ public class DaftarPesanan {
         }
     }
 
+    // Kompleksitas: O(n²) — Bubble Sort dengan dua loop bersarang.
+    // Kasus terbaik O(n) jika data sudah terurut (flag tukar=false langsung),
+    // kasus terburuk O(n²) jika data terbalik urutannya.
     void sortingNama() {
         if (head == null)
             return;
@@ -73,6 +78,62 @@ public class DaftarPesanan {
                     sekarang.kodePesanan, sekarang.namaPesanan, sekarang.harga);
             total += sekarang.harga;
             sekarang = sekarang.next;
-        } 
-    } 
+
+        }
+    }
+
+    public void totalPendapatan() {
+        int total = 0;
+        Pesanan sekarang = head;
+        while (sekarang != null) {
+            total += sekarang.harga;
+            sekarang = sekarang.next;
+        }
+        System.out.println("TOTAL PENDAPATAN");
+        System.out.println("==============================");
+        System.out.println("Total Harga Seluruh Pesanan : Rp " + total);
+    }
+
+    // Kompleksitas: O(n) — harus traversal dari head untuk mencari kode pesanan.
+    // Kasus terbaik O(1) jika kode ada di head, terburuk O(n) jika di tail atau tidak ada.
+    void hapusPesanan(int kodePesanan) {
+        if (head == null) {
+            System.out.println("Belum ada pesanan.");
+            return;
+        }
+
+        Pesanan sekarang = head;
+        while (sekarang != null) {
+            if (sekarang.kodePesanan == kodePesanan) {
+
+                if (sekarang == head && sekarang == tail) {
+                    head = null;
+                    tail = null;
+                }
+
+                else if (sekarang == head) {
+                    head = head.next;
+                    head.prev = null;
+                }
+
+                else if (sekarang == tail) {
+                    tail = tail.prev;
+                    tail.next = null;
+
+                }
+
+                else {
+                    sekarang.prev.next = sekarang.next;
+                    sekarang.next.prev = sekarang.prev;
+                }
+
+                System.out.println("Pesanan kode " + kodePesanan + " berhasil dihapus.");
+                return;
+            }
+            sekarang = sekarang.next;
+        }
+
+        System.out.println("Kode pesanan tidak ditemukan.");
+    }
+
 }

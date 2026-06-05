@@ -39,5 +39,6 @@ public class BinaryTreeMain20 {
         System.out.println("\nPenghapusan data mahasiswa");
         System.out.println("Daftar semua mahasiswa setelah penghapusan 1 mahasiswa (in order traversal):");
         bst.traverseInOrder(bst.root);
+        
     }
 }

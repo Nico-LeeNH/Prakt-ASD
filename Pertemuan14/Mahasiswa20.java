@@ -10,7 +10,7 @@ public class Mahasiswa20 {
 
     }
 
-    public Mahasiswa20(String nama, String nim, String kelas, Double ipk) {
+    public Mahasiswa20(String nim, String nama, String kelas, Double ipk) {
         this.nama = nama;
         this.nim = nim;
         this.kelas = kelas;

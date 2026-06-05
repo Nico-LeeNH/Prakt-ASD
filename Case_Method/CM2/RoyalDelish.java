@@ -18,6 +18,10 @@ public class RoyalDelish {
             System.out.println("2. Cetak Antrian");
             System.out.println("3. Hapus Antrian dan Pesan");
             System.out.println("4. Laporan Pesanan");
+            System.out.println("5. Total Pendapatan");
+            System.out.println("6. Hapus Pesanan");
+            System.out.println("7. Cari Pembeli");
+            System.out.println("8. Urutkan Antrian");
             System.out.println("0. Keluar");
             System.out.print("Pilih menu : ");
             pilihan = sc.nextInt();
@@ -40,6 +44,27 @@ public class RoyalDelish {
                 case 4:
                     dfpesanan.tampil();
                     break;
+                case 5:
+                    dfpesanan.totalPendapatan();
+                    break;
+                case 6:
+                    dfpesanan.tampil();
+                    if (dfpesanan.head == null)
+                        return;
+
+                    System.out.print("Masukkan Kode Pesanan yang ingin dihapus: ");
+                    int kode = sc.nextInt();
+                    sc.nextLine();
+                    dfpesanan.hapusPesanan(kode);
+                    break;
+                case 7:
+                    System.out.print("Masukkan Nama Pembeli yang dicari: ");
+                    nama = sc.nextLine();
+                    antrian.cariPembeli(nama);
+                    break;
+                case 8:
+                    antrian.sortAntrian();
+                    break;
                 case 0:
                     System.out.println("Terima kasih!");
                     break;
@@ -55,13 +80,11 @@ public class RoyalDelish {
         if (antrian.head == null)
             return;
 
-        System.out.print("Masukkan No Antrian yang dipanggil: ");
-        int noAntrian = sc.nextInt();
-        sc.nextLine();
-
-        String namaPembeli = antrian.hapusAntrian(noAntrian);
+        String namaPembeli = antrian.remove();
         if (namaPembeli == null)
             return;
+
+        System.out.println("Memanggil : " + namaPembeli);
 
         System.out.print("Kode Pesanan  : ");
         int kode = sc.nextInt();
